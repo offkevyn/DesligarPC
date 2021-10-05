@@ -30,6 +30,10 @@ public class FormPrincipal extends javax.swing.JFrame {
     public FormPrincipal() {
         initComponents();
         
+        //Faz com que esse form sobreponha todas as outras janelas abertas
+        //Esse form só vai para de ser exibido se ele for minimizado
+        this.setAlwaysOnTop(true);
+        
         btnParar.setVisible(false);
         btnMais10.setVisible(false);
     }
@@ -179,7 +183,6 @@ public class FormPrincipal extends javax.swing.JFrame {
             minutos = 0;    
             horas = 0;
             lbVisorCronometro.setText(String.format("%02d:%02d:%02d", horas, minutos, segundos));
-            
         }
     }//GEN-LAST:event_btnPararActionPerformed
 
@@ -194,7 +197,6 @@ public class FormPrincipal extends javax.swing.JFrame {
             segundos = cbxSegundos.getSelectedIndex();
             minutos = cbxMinutos.getSelectedIndex();    
             horas = cbxHoras.getSelectedIndex();
-            
 
             if(!rodando)
             {
@@ -207,22 +209,15 @@ public class FormPrincipal extends javax.swing.JFrame {
                 cbxHoras.setVisible(false);
                 cbxMinutos.setVisible(false);
                 cbxSegundos.setVisible(false);
-                
-                
-                
 
                 instanciaTarefa();
                 cronometro = new Timer();
 
                 cronometro.schedule(tarefa, 0, 500);
-
-
-
             }
         }
         else
                 JOptionPane.showMessageDialog(this, "Selecione um valor valido", "VAZIA", JOptionPane.INFORMATION_MESSAGE);
-        
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnMais10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMais10ActionPerformed
@@ -265,12 +260,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormPrincipal().setVisible(true);
+               
             }
         });
     }
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
